@@ -38,13 +38,13 @@ npm run deploy       # 3. 部署
 部署成功后终端会输出类似地址：
 
 ```
-https://f1-calendar.<你的子域>.workers.dev
+https://f1-ics-subscribe.<你的子域>.workers.dev
 ```
 
 对应的**订阅链接**：
 
 ```
-https://f1-calendar.<你的子域>.workers.dev/calendar.ics
+https://f1-ics-subscribe.<你的子域>.workers.dev/calendar.ics
 ```
 
 > 没有 Node 环境？直接跑 `npx wrangler login` + `npx wrangler deploy` 即可（npx 会自动临时下载 wrangler）。
