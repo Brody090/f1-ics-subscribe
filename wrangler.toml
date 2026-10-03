@@ -1,0 +1,7 @@
+# Cloudflare Worker 配置
+name = "f1-calendar"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+# 如需自定义域名或路由，可在此添加：
+# routes = [{ pattern = "f1.example.com/*", zone_name = "example.com" }]
