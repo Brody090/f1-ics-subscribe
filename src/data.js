@@ -50,6 +50,8 @@ export const SEASONS = [
         country: "澳大利亚",
         city: "墨尔本",
         circuit: "阿尔伯特公园赛道",
+        lat: -37.8373,
+        lng: 144.9666,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-03-06T09:30" },
@@ -65,6 +67,8 @@ export const SEASONS = [
         country: "中国",
         city: "上海",
         circuit: "上海国际赛车场",
+        lat: 31.3807,
+        lng: 121.2498,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-03-13T11:30" },
@@ -80,6 +84,8 @@ export const SEASONS = [
         country: "日本",
         city: "铃鹿",
         circuit: "铃鹿赛道",
+        lat: 34.8448408,
+        lng: 136.5334551,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-03-27T10:30" },
@@ -95,6 +101,8 @@ export const SEASONS = [
         country: "美国",
         city: "迈阿密",
         circuit: "迈阿密国际赛道",
+        lat: 25.957764,
+        lng: -80.238835,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-05-02T00:00" },
@@ -110,6 +118,8 @@ export const SEASONS = [
         country: "加拿大",
         city: "蒙特利尔",
         circuit: "吉尔斯·维伦纽夫赛道",
+        lat: 45.5034,
+        lng: -73.5267,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-05-23T00:30" },
@@ -125,6 +135,8 @@ export const SEASONS = [
         country: "摩纳哥",
         city: "蒙特卡洛",
         circuit: "蒙特卡洛赛道",
+        lat: 43.7338,
+        lng: 7.4215,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-06-05T19:30" },
@@ -140,6 +152,8 @@ export const SEASONS = [
         country: "西班牙",
         city: "巴塞罗那",
         circuit: "巴塞罗那-加泰罗尼亚赛道",
+        lat: 41.5638,
+        lng: 2.2585,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-06-12T19:30" },
@@ -155,6 +169,8 @@ export const SEASONS = [
         country: "奥地利",
         city: "斯皮尔伯格",
         circuit: "红牛环赛道",
+        lat: 47.2225,
+        lng: 14.7607,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-06-26T19:30" },
@@ -170,6 +186,8 @@ export const SEASONS = [
         country: "英国",
         city: "银石",
         circuit: "银石赛道",
+        lat: 52.0706,
+        lng: -1.0174,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-07-03T19:30" },
@@ -185,6 +203,8 @@ export const SEASONS = [
         country: "比利时",
         city: "斯帕-弗朗科尔尚",
         circuit: "斯帕-弗朗科尔尚赛道",
+        lat: 50.444,
+        lng: 5.9687,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-07-17T19:30" },
@@ -200,6 +220,8 @@ export const SEASONS = [
         country: "匈牙利",
         city: "布达佩斯",
         circuit: "亨格罗宁赛道",
+        lat: 47.583,
+        lng: 19.2526,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-07-24T19:30" },
@@ -215,6 +237,8 @@ export const SEASONS = [
         country: "荷兰",
         city: "赞德沃特",
         circuit: "赞德沃特赛道",
+        lat: 52.388408,
+        lng: 4.547122,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-08-21T18:30" },
@@ -230,6 +254,8 @@ export const SEASONS = [
         country: "意大利",
         city: "蒙扎",
         circuit: "蒙扎赛道",
+        lat: 45.6169,
+        lng: 9.2825,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-09-04T18:30" },
@@ -245,6 +271,8 @@ export const SEASONS = [
         country: "西班牙",
         city: "马德里",
         circuit: "马德里街道赛道",
+        lat: 40.4168,
+        lng: -3.7038,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-09-11T19:30" },
@@ -260,6 +288,8 @@ export const SEASONS = [
         country: "阿塞拜疆",
         city: "巴库",
         circuit: "巴库城市赛道",
+        lat: 40.3699,
+        lng: 49.8433,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-09-24T16:30" },
@@ -275,6 +305,8 @@ export const SEASONS = [
         country: "马来西亚",
         city: "雪邦",
         circuit: "雪邦国际赛道",
+        lat: 2.760278,
+        lng: 101.738056,
         sprint: false,
         // 注：原定巴林萨基尔站，因故改期至马来西亚雪邦举行，状态 TBC（待定），
         // 时间按雪邦历史赛程估算，请以官方最终确认为准。
@@ -292,6 +324,8 @@ export const SEASONS = [
         country: "新加坡",
         city: "新加坡",
         circuit: "滨海湾街道赛道",
+        lat: 1.2857,
+        lng: 103.8575,
         sprint: true,
         sessions: [
           { type: "FP1", start: "2026-10-09T16:30" },
@@ -307,6 +341,8 @@ export const SEASONS = [
         country: "美国",
         city: "奥斯汀",
         circuit: "美洲赛道",
+        lat: 30.1328,
+        lng: -97.6411,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-10-24T01:30" },
@@ -322,6 +358,8 @@ export const SEASONS = [
         country: "墨西哥",
         city: "墨西哥城",
         circuit: "罗德里格斯兄弟赛道",
+        lat: 19.4028,
+        lng: -99.0986,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-10-31T02:30" },
@@ -337,6 +375,8 @@ export const SEASONS = [
         country: "巴西",
         city: "圣保罗",
         circuit: "英特拉格斯赛道",
+        lat: -23.7014,
+        lng: -46.6969,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-11-06T23:30" },
@@ -352,6 +392,8 @@ export const SEASONS = [
         country: "美国",
         city: "拉斯维加斯",
         circuit: "拉斯维加斯街道赛道",
+        lat: 36.166747,
+        lng: -115.148708,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-11-20T08:30" },
@@ -367,6 +409,8 @@ export const SEASONS = [
         country: "卡塔尔",
         city: "多哈",
         circuit: "卢塞尔国际赛道",
+        lat: 25.490292,
+        lng: 51.45303,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-11-27T21:30" },
@@ -382,6 +426,8 @@ export const SEASONS = [
         country: "阿联酋",
         city: "亚斯码头",
         circuit: "亚斯码头赛道",
+        lat: 24.4821,
+        lng: 54.3482,
         sprint: false,
         sessions: [
           { type: "FP1", start: "2026-12-04T17:30" },

@@ -93,6 +93,14 @@ function vevent({ year, round, race, type, start }, tzid) {
   descParts.push("（时间：北京时间）");
   const description = descParts.join(" · ");
 
+  // 地理坐标（若有），供 iOS 日历显示地图定位
+  const geo = race.lat != null && race.lng != null
+    ? [
+        `GEO:${race.lat};${race.lng}`,
+        `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=1000;X-TITLE="${race.circuit}":geo:${race.lat},${race.lng}`,
+      ]
+    : [];
+
   return [
     "BEGIN:VEVENT",
     `UID:${uid}`,
@@ -102,6 +110,12 @@ function vevent({ year, round, race, type, start }, tzid) {
     `SUMMARY:${escapeText(summary)}`,
     `LOCATION:${escapeText(location)}`,
     `DESCRIPTION:${escapeText(description)}`,
+    ...geo,
+    "BEGIN:VALARM",
+    "ACTION:DISPLAY",
+    `DESCRIPTION:${escapeText(summary)} 即将开始`,
+    "TRIGGER:-PT10M",
+    "END:VALARM",
     "END:VEVENT",
   ];
 }
