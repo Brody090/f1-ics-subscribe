@@ -47,6 +47,7 @@ export const SEASONS = [
       {
         round: 1,
         name: "澳大利亚大奖赛",
+        enName: "Albert Park Circuit",
         country: "澳大利亚",
         city: "墨尔本",
         circuit: "阿尔伯特公园赛道",
@@ -64,6 +65,7 @@ export const SEASONS = [
       {
         round: 2,
         name: "中国大奖赛",
+        enName: "Shanghai International Circuit",
         country: "中国",
         city: "上海",
         circuit: "上海国际赛车场",
@@ -81,6 +83,7 @@ export const SEASONS = [
       {
         round: 3,
         name: "日本大奖赛",
+        enName: "Suzuka International Racing Course",
         country: "日本",
         city: "铃鹿",
         circuit: "铃鹿赛道",
@@ -98,6 +101,7 @@ export const SEASONS = [
       {
         round: 4,
         name: "迈阿密大奖赛",
+        enName: "Miami International Autodrome",
         country: "美国",
         city: "迈阿密",
         circuit: "迈阿密国际赛道",
@@ -115,6 +119,7 @@ export const SEASONS = [
       {
         round: 5,
         name: "加拿大大奖赛",
+        enName: "Circuit Gilles Villeneuve",
         country: "加拿大",
         city: "蒙特利尔",
         circuit: "吉尔斯·维伦纽夫赛道",
@@ -132,6 +137,7 @@ export const SEASONS = [
       {
         round: 6,
         name: "摩纳哥大奖赛",
+        enName: "Circuit de Monaco",
         country: "摩纳哥",
         city: "蒙特卡洛",
         circuit: "蒙特卡洛赛道",
@@ -149,6 +155,7 @@ export const SEASONS = [
       {
         round: 7,
         name: "巴塞罗那-加泰罗尼亚大奖赛",
+        enName: "Circuit de Barcelona-Catalunya",
         country: "西班牙",
         city: "巴塞罗那",
         circuit: "巴塞罗那-加泰罗尼亚赛道",
@@ -166,6 +173,7 @@ export const SEASONS = [
       {
         round: 8,
         name: "奥地利大奖赛",
+        enName: "Red Bull Ring",
         country: "奥地利",
         city: "斯皮尔伯格",
         circuit: "红牛环赛道",
@@ -183,6 +191,7 @@ export const SEASONS = [
       {
         round: 9,
         name: "英国大奖赛",
+        enName: "Silverstone Circuit",
         country: "英国",
         city: "银石",
         circuit: "银石赛道",
@@ -200,6 +209,7 @@ export const SEASONS = [
       {
         round: 10,
         name: "比利时大奖赛",
+        enName: "Circuit de Spa-Francorchamps",
         country: "比利时",
         city: "斯帕-弗朗科尔尚",
         circuit: "斯帕-弗朗科尔尚赛道",
@@ -217,6 +227,7 @@ export const SEASONS = [
       {
         round: 11,
         name: "匈牙利大奖赛",
+        enName: "Hungaroring",
         country: "匈牙利",
         city: "布达佩斯",
         circuit: "亨格罗宁赛道",
@@ -234,6 +245,7 @@ export const SEASONS = [
       {
         round: 12,
         name: "荷兰大奖赛",
+        enName: "Circuit Zandvoort",
         country: "荷兰",
         city: "赞德沃特",
         circuit: "赞德沃特赛道",
@@ -251,6 +263,7 @@ export const SEASONS = [
       {
         round: 13,
         name: "意大利大奖赛",
+        enName: "Autodromo Nazionale di Monza",
         country: "意大利",
         city: "蒙扎",
         circuit: "蒙扎赛道",
@@ -268,6 +281,7 @@ export const SEASONS = [
       {
         round: 14,
         name: "西班牙大奖赛（马德里）",
+        enName: "Madring",
         country: "西班牙",
         city: "马德里",
         circuit: "马德里街道赛道",
@@ -285,6 +299,7 @@ export const SEASONS = [
       {
         round: 15,
         name: "阿塞拜疆大奖赛",
+        enName: "Baku City Circuit",
         country: "阿塞拜疆",
         city: "巴库",
         circuit: "巴库城市赛道",
@@ -302,6 +317,7 @@ export const SEASONS = [
       {
         round: 16,
         name: "巴林大奖赛（马来西亚）",
+        enName: "Sepang International Circuit",
         country: "马来西亚",
         city: "雪邦",
         circuit: "雪邦国际赛道",
@@ -321,6 +337,7 @@ export const SEASONS = [
       {
         round: 17,
         name: "新加坡大奖赛",
+        enName: "Marina Bay Street Circuit",
         country: "新加坡",
         city: "新加坡",
         circuit: "滨海湾街道赛道",
@@ -338,6 +355,7 @@ export const SEASONS = [
       {
         round: 18,
         name: "美国大奖赛",
+        enName: "Circuit of the Americas",
         country: "美国",
         city: "奥斯汀",
         circuit: "美洲赛道",
@@ -355,6 +373,7 @@ export const SEASONS = [
       {
         round:19,
         name: "墨西哥城大奖赛",
+        enName: "Autodromo Hermanos Rodriguez",
         country: "墨西哥",
         city: "墨西哥城",
         circuit: "罗德里格斯兄弟赛道",
@@ -372,6 +391,7 @@ export const SEASONS = [
       {
         round: 20,
         name: "巴西大奖赛",
+        enName: "Interlagos",
         country: "巴西",
         city: "圣保罗",
         circuit: "英特拉格斯赛道",
@@ -389,6 +409,7 @@ export const SEASONS = [
       {
         round: 21,
         name: "拉斯维加斯大奖赛",
+        enName: "Las Vegas Strip Circuit",
         country: "美国",
         city: "拉斯维加斯",
         circuit: "拉斯维加斯街道赛道",
@@ -406,6 +427,7 @@ export const SEASONS = [
       {
         round: 22,
         name: "卡塔尔大奖赛",
+        enName: "Lusail International Circuit",
         country: "卡塔尔",
         city: "多哈",
         circuit: "卢塞尔国际赛道",
@@ -423,6 +445,7 @@ export const SEASONS = [
       {
         round: 23,
         name: "阿布扎比大奖赛",
+        enName: "Yas Marina Circuit",
         country: "阿联酋",
         city: "亚斯码头",
         circuit: "亚斯码头赛道",

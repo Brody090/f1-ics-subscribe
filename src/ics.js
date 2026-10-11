@@ -87,7 +87,7 @@ function vevent({ year, round, race, type, start }, tzid) {
 
   const uid = `f1-${year}-r${pad(round)}-${type.toLowerCase()}@f1calendar.local`;
   const summary = `F1 ${race.name} · ${meta.label}`;
-  const location = `${race.circuit}，${race.city}`;
+  const location = `${race.enName}, ${race.city}`;
   const descParts = [`${year} F1 世界锦标赛 · 第 ${round} 站`, `${race.country} · ${race.city}`];
   if (race.sprint) descParts.push("冲刺赛周末");
   descParts.push("（时间：北京时间）");
@@ -97,7 +97,7 @@ function vevent({ year, round, race, type, start }, tzid) {
   const geo = race.lat != null && race.lng != null
     ? [
         `GEO:${race.lat};${race.lng}`,
-        `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=1000;X-TITLE="${race.circuit}":geo:${race.lat},${race.lng}`,
+        `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=1000;X-TITLE="${race.enName}":geo:${race.lat},${race.lng}`,
       ]
     : [];
 
