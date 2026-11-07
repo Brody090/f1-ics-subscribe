@@ -62,6 +62,25 @@ function dtstamp() {
   );
 }
 
+function compactDate(date) {
+  return date.replaceAll("-", "");
+}
+
+function locationFields(race) {
+  if (race.lat == null || race.lng == null) return [];
+
+  const title = escapeText(race.enName).replace(/"/g, "\\\"");
+  const mapUrl = new URL("https://maps.apple.com/");
+  mapUrl.searchParams.set("ll", `${race.lat},${race.lng}`);
+  mapUrl.searchParams.set("q", `${race.enName}, ${race.city}`);
+
+  return [
+    `GEO:${race.lat};${race.lng}`,
+    `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=1000;X-TITLE="${title}":geo:${race.lat},${race.lng}`,
+    `URL:${mapUrl.toString()}`,
+  ];
+}
+
 // 生成 VTIMEZONE（Asia/Shanghai，固定 +08:00，无夏令时）
 function vtimezone(tzid) {
   return [
@@ -93,13 +112,7 @@ function vevent({ year, round, race, type, start }, tzid) {
   descParts.push("（时间：北京时间）");
   const description = descParts.join(" · ");
 
-  // 地理坐标（若有），供 iOS 日历显示地图定位
-  const geo = race.lat != null && race.lng != null
-    ? [
-        `GEO:${race.lat};${race.lng}`,
-        `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=1000;X-TITLE="${race.enName}":geo:${race.lat},${race.lng}`,
-      ]
-    : [];
+  const geo = locationFields(race);
 
   return [
     "BEGIN:VEVENT",
@@ -120,6 +133,29 @@ function vevent({ year, round, race, type, start }, tzid) {
   ];
 }
 
+function weekendEvent({ year, round, race }) {
+  const summary = `F1 ${race.name} · 比赛周末`;
+  const location = `${race.enName}, ${race.city}`;
+  const description = [
+    `${year} F1 世界锦标赛 · 第 ${round} 站`,
+    `${race.country} · ${race.city}`,
+    "官方已公布比赛周末日期，具体场次时间待官方确认。",
+  ].join(" · ");
+
+  return [
+    "BEGIN:VEVENT",
+    `UID:f1-${year}-r${pad(round)}-weekend@f1calendar.local`,
+    `DTSTAMP:${dtstamp()}`,
+    `DTSTART;VALUE=DATE:${compactDate(race.weekend.start)}`,
+    `DTEND;VALUE=DATE:${compactDate(race.weekend.end)}`,
+    `SUMMARY:${escapeText(summary)}`,
+    `LOCATION:${escapeText(location)}`,
+    `DESCRIPTION:${escapeText(description)}`,
+    ...locationFields(race),
+    "END:VEVENT",
+  ];
+}
+
 // 主入口：传入赛季对象与全局时区，返回完整 ICS 文本
 export function buildICS(season, tz) {
   const lines = [
@@ -134,6 +170,11 @@ export function buildICS(season, tz) {
   ];
 
   for (const race of season.rounds) {
+    if (race.weekend) {
+      lines.push(...weekendEvent({ year: season.year, round: race.round, race }));
+      continue;
+    }
+
     for (const session of race.sessions) {
       const block = vevent({ year: season.year, round: race.round, race, ...session }, tz);
       if (block) lines.push(...block);

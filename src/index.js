@@ -16,7 +16,7 @@ function findSeason(year) {
   return SEASONS[SEASONS.length - 1] || null;
 }
 
-function landingPage(subscribeUrl) {
+function landingPage(subscribeUrl, year) {
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -46,9 +46,9 @@ function landingPage(subscribeUrl) {
 </head>
 <body>
   <div class="wrap">
-    <div class="logo">Formula 1 · 2026</div>
+    <div class="logo">Formula 1 · ${year}</div>
     <h1>F1 赛历订阅</h1>
-    <p class="sub">在 iPhone 日历里订阅即可自动同步整个赛季的比赛日程（北京时间）。</p>
+    <p class="sub">在 iPhone 日历里订阅即可自动同步整个赛季的比赛日程（北京时间，24 小时制显示由设备设置决定）。</p>
 
     <div class="card">
       <div style="font-weight:600;margin-bottom:10px;">订阅链接</div>
@@ -64,7 +64,7 @@ function landingPage(subscribeUrl) {
       <li>打开「设置」→「日历」→「账户」。</li>
       <li>点「添加账户」→ 选「其他」→「添加已订阅的日历」。</li>
       <li>粘贴上面的订阅链接，点「下一步」并保存。</li>
-      <li>打开「日历」App，即可看到整个 2026 赛季的练习赛、排位赛、冲刺赛与正赛。</li>
+      <li>打开「日历」App，即可看到整个 ${year} 赛季的比赛日程。</li>
     </ol>
     <p class="hint">也可以用 Safari 直接打开订阅链接，弹窗点击「订阅」即可。</p>
 
@@ -115,8 +115,12 @@ export default {
     }
 
     if (path === "/" || path === "/index.html") {
-      const subscribeUrl = `${origin}${ICS_PATH}`;
-      return new Response(landingPage(subscribeUrl), {
+      const season = findSeason(url.searchParams.get("year"));
+      if (!season) {
+        return new Response("未找到该赛季数据", { status: 404 });
+      }
+      const subscribeUrl = `${origin}${ICS_PATH}?year=${season.year}`;
+      return new Response(landingPage(subscribeUrl, season.year), {
         headers: { "Content-Type": "text/html; charset=utf-8" },
       });
     }
