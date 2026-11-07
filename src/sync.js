@@ -1,6 +1,7 @@
 // 自动赛历同步：外部数据只在完整校验后写入 KV，静态数据始终作为回退。
 
 const DEFAULT_SOURCE = "https://api.jolpi.ca/ergast/f1";
+const MIN_SYNC_YEAR = 2026;
 const DELETE_CONFIRMATIONS = 2;
 
 export const keys = {
@@ -11,7 +12,7 @@ export const keys = {
 function seasonList(payload) {
   return (payload?.MRData?.SeasonTable?.Seasons || [])
     .map((item) => Number(item.season))
-    .filter((year) => Number.isInteger(year) && year >= 2020 && year <= 2100);
+    .filter((year) => Number.isInteger(year) && year >= MIN_SYNC_YEAR && year <= 2100);
 }
 
 function raceFromJolpica(race, staticRace) {
