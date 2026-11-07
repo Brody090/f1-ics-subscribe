@@ -1,19 +1,20 @@
 // ============================================================================
 // Cloudflare Worker 入口
 //   GET /              → 落地页（显示订阅链接 + iOS 订阅步骤）
-//   GET /calendar.ics  → ICS 订阅源（可用 ?year= 指定赛季，默认最新赛季）
+//   GET /calendar.ics  → ICS 订阅源（可用 ?year= 指定赛季，默认 2026 赛季）
 // ============================================================================
 
 import { SEASONS, CALENDAR_TZ } from "./data.js";
 import { buildICS } from "./ics.js";
 
 const ICS_PATH = "/calendar.ics";
+const DEFAULT_SEASON_YEAR = 2026;
 
 function findSeason(year) {
   if (year) {
     return SEASONS.find((s) => String(s.year) === String(year)) || null;
   }
-  return SEASONS[SEASONS.length - 1] || null;
+  return SEASONS.find((s) => s.year === DEFAULT_SEASON_YEAR) || SEASONS[SEASONS.length - 1] || null;
 }
 
 function landingPage(subscribeUrl, year) {

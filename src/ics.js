@@ -139,7 +139,7 @@ function weekendEvent({ year, round, race }) {
   const description = [
     `${year} F1 世界锦标赛 · 第 ${round} 站`,
     `${race.country} · ${race.city}`,
-    "官方已公布比赛周末日期，具体场次时间待官方确认。",
+    race.sprint ? "冲刺赛周末" : "大奖赛周末",
   ].join(" · ");
 
   return [
