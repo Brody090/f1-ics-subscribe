@@ -92,7 +92,7 @@ https://f1-ics-subscribe.<你的子域>.workers.dev/calendar.ics
 
 ### 新增一个赛季（如 2027）
 
-往 `SEASONS` 数组末尾追加 `{ year: 2027, rounds: [...] }`。默认订阅自动取**最新**赛季，也可指定年份：
+可以往 `SEASONS` 数组末尾追加 `{ year: 2027, rounds: [...] }` 作为静态回退。默认订阅固定为 2026；自动同步发现新赛季（如 2028）后，也可直接指定年份：
 
 ```
 https://xxx.workers.dev/calendar.ics?year=2027
@@ -120,11 +120,20 @@ https://xxx.workers.dev/calendar.ics?year=2027
 ├── src/
 │   ├── index.js        # Worker 入口：路由 + 落地页 + ?year= 赛季选择
 │   ├── data.js         # ★ 唯一需要日常维护的赛程数据文件
-│   └── ics.js          # ICS 生成器（一般无需改动）
+│   ├── ics.js          # ICS 生成器（一般无需改动）
+│   └── sync.js         # 定时同步、KV 回退与删除保护
 ├── wrangler.toml       # Cloudflare Worker 配置
 ├── package.json
 └── README.md
 ```
+
+## 自动同步（部署后启用）
+
+1. 创建 Cloudflare KV：`wrangler kv namespace create SCHEDULES`，再把输出的 id 写入 `wrangler.toml` 中已注释的 `[[kv_namespaces]]` 配置。
+2. Worker 每 12 小时（UTC）从 Jolpica 的结构化赛程接口发现赛季并同步。新增年份会自动出现在 `?year=年份`。
+3. 当前默认订阅固定为 2026；同步不会因发现 2028 而更改现有订阅。
+4. 上游缺失的未来比赛须连续两次同步确认后才标为取消；已结束比赛保留。上游失败或数据不完整不会覆盖 KV 中的最后成功版本。
+5. 使用 `/status` 查看已同步赛季、版本、更新时间及来源。未配置 KV 时，Worker 自动回退到 `src/data.js`。
 
 ## 本地预览
 

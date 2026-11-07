@@ -170,6 +170,7 @@ export function buildICS(season, tz) {
   ];
 
   for (const race of season.rounds) {
+    if (race.cancelled) continue;
     if (race.weekend) {
       lines.push(...weekendEvent({ year: season.year, round: race.round, race }));
       continue;

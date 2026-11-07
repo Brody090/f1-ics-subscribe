@@ -6,15 +6,20 @@
 
 import { SEASONS, CALENDAR_TZ } from "./data.js";
 import { buildICS } from "./ics.js";
+import { readMeta, readSchedule, syncSchedules } from "./sync.js";
 
 const ICS_PATH = "/calendar.ics";
 const DEFAULT_SEASON_YEAR = 2026;
 
 function findSeason(year) {
-  if (year) {
-    return SEASONS.find((s) => String(s.year) === String(year)) || null;
-  }
+  if (year) return SEASONS.find((s) => String(s.year) === String(year)) || null;
   return SEASONS.find((s) => s.year === DEFAULT_SEASON_YEAR) || SEASONS[SEASONS.length - 1] || null;
+}
+
+async function resolveSeason(env, year) {
+  const fallback = findSeason(year);
+  const requestedYear = Number(year || fallback?.year);
+  return Number.isInteger(requestedYear) ? readSchedule(env, requestedYear, SEASONS) : null;
 }
 
 function landingPage(subscribeUrl, year) {
@@ -90,7 +95,7 @@ function landingPage(subscribeUrl, year) {
 }
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
     const origin = url.origin;
@@ -101,7 +106,7 @@ export default {
 
     if (path === ICS_PATH) {
       const year = url.searchParams.get("year");
-      const season = findSeason(year);
+      const season = await resolveSeason(env, year);
       if (!season) {
         return new Response("未找到该赛季数据", { status: 404 });
       }
@@ -115,8 +120,17 @@ export default {
       });
     }
 
+    if (path === "/status") {
+      const seasons = await readMeta(env);
+      return Response.json({
+        defaultSeason: DEFAULT_SEASON_YEAR,
+        staticSeasons: SEASONS.map((season) => season.year),
+        syncedSeasons: seasons,
+      }, { headers: { "Cache-Control": "no-store" } });
+    }
+
     if (path === "/" || path === "/index.html") {
-      const season = findSeason(url.searchParams.get("year"));
+      const season = await resolveSeason(env, url.searchParams.get("year"));
       if (!season) {
         return new Response("未找到该赛季数据", { status: 404 });
       }
@@ -127,5 +141,9 @@ export default {
     }
 
     return new Response("Not Found", { status: 404 });
+  },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(syncSchedules({ env, staticSeasons: SEASONS }));
   },
 };

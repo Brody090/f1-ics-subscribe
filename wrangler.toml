@@ -3,5 +3,15 @@ name = "f1-ics-subscribe"
 main = "src/index.js"
 compatibility_date = "2025-06-01"
 
+# 部署前运行 `wrangler kv namespace create SCHEDULES`，把生成的 id 填入下方。
+# 未配置 KV 时，本地开发和线上请求会自动使用 src/data.js 回退数据。
+# [[kv_namespaces]]
+# binding = "SCHEDULES"
+# id = "填写 Cloudflare KV namespace id"
+
+# 每 12 小时同步一次，Cron 使用 UTC。
+[triggers]
+crons = ["17 */12 * * *"]
+
 # 如需自定义域名或路由，可在此添加：
 # routes = [{ pattern = "f1.example.com/*", zone_name = "example.com" }]
